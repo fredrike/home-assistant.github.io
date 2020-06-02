@@ -11,3 +11,8 @@ When people talking about Home Assistant Core they usually refer to a standalone
 Home Assistant is an all-in one-solution and has a management user interface that can be used from the Home Assistant frontend. This interface is not present in a Home Assistant Core setup.
 
 Be aware that add-ons are only available in regular Home Assistant installations.
+
+The text can be summarizes as this:
+1. **Home Assistant Core** is a Python program that provide the ability to track, control and automate your devices
+2. **Home Assistant** contains **Home Assistant Core** (1.) and a **Supervisor** that manage the **Core** and install **Addons** trough Docker, among other things
+3. **Hassos** is an operation system just like Ubuntu that comes with **Home Assistant** (2.) installed
