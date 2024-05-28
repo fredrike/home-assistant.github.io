@@ -9,7 +9,7 @@ ha_category:
 ha_release: 0.83
 ha_config_flow: true
 ha_iot_class: Cloud Polling
-ha_quality_scale: gold
+ha_quality_scale: silver
 ha_codeowners:
   - '@fredrike'
 ha_domain: point
@@ -19,42 +19,31 @@ ha_platforms:
   - sensor
 ha_integration_type: integration
 related:
-  - docs: /docs/configuration/
-    title: Configuration file
+  - docs: /integrations/application_credentials/
+    title: Application credentials
 ---
 
-The Point hub enables integration with the [Minut Point](https://minut.com/). To connect with Point, you will have to [sign up for a developer account and have a Pro subscription](https://minut.com/community/developers/) and get a `client_id` and `client_secret` with the `callback url` configured as your Home Assistant URL + `/api/minut`, e.g.,  `http://homeassistant.local:8123/api/minut`. The `client_id` and `client_secret` should be used as below.
-
-Once Home Assistant is started, a configurator will pop up asking you to Authenticate your Point account via a link. When you follow the link and click on **Accept** you will be redirected to the `callback url` and the Point integration will be automatically configured and you can go back to the original dialog and press **Submit**.
-
-There is currently support for the following device types within Home Assistant:
+The Point hub enables integration with the [Minut Point](https://minut.com/). There is currently support for the following device types within Home Assistant:
 
 - [Alarm](#alarm)
 - [Binary sensor](#binary-sensor)
 - [Sensor](#sensor)
 
-### Configuration
+## Get Minut Point application credentials
 
-To use the Minut Point {% term integration %} in your installation, add it to your {% term "`configuration.yaml`" %} file.
-{% include integrations/restart_ha_after_config_inclusion.md %}
+Navigate to the [API-client | Minut](https://web.minut.com/settings/api-clients) dashboard and **Create client**:
 
-```yaml
-# Example configuration.yaml entry
-point:
-  client_id: CLIENT_ID
-  client_secret: CLIENT_SECRET
-```
+- Enter a **Name** for your client (this is just an identifier).
+- Enter `https://my.home-assistant.io/redirect/oauth` in the **Redirect URI** field. 
+- Get the **ClientID** and **ClientSecret** for the new client, you need them to complete the integration setup in Home Assistant. 
 
-{% configuration %}
-client_id:
-  description: Your Minut Point developer client ID.
-  required: true
-  type: string
-client_secret:
-  description: Your Minut Point developer client secret.
-  required: true
-  type: string
-{% endconfiguration %}
+<div class='note'>
+
+If you are a kickstarter backer you need to send an email to hello@minut.com to retrive **ClientID** and **ClientSecret**, don't forget to mention that the **Redirect URI** should be `https://my.home-assistant.io/redirect/oauth`.
+
+</div>
+
+{% include integrations/config_flow.md %}
 
 # Device types
 
@@ -149,6 +138,7 @@ automation:
 ```
 
 {% endraw %}
+
 
 ## Sensor
 
